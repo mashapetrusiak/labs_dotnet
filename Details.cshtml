@@ -1,0 +1,58 @@
+﻿@model lab4.ViewModels.EmployeeViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AddressId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address.ToString)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FullNameId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FullName.ToString)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProjectInfoId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProjectInfo.ToString)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PositionId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Position.ToString)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Days)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Days)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Characterization)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Characterization)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="AddOrEdit" asp-route-employeeId="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
