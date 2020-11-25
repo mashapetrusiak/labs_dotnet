@@ -1,0 +1,56 @@
+﻿@using lab3.Models
+@using lab3.ViewModels
+@using Microsoft.EntityFrameworkCore;
+@using System.Linq;
+
+<table>
+    <thead>
+        <tr>
+            <th>Project</th>
+            <th>ProjectStart</th>
+            <th>ProjectEnd</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>City</th>
+            <th>Position</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    @foreach (var item in ProjectContracts)
+    {
+        <tr>
+            <td>@item.Project</td>
+            <td>@item.ProjectStart</td>
+            <td>@item.ProjectEnd</td>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@item.City</td>
+            <td>@item.Position</td>
+            <td>@item.Salary</td>
+        </tr>
+    }
+</table>
+
+@code {
+    public List<ProjectContractsViewModel>
+    ProjectContracts
+    { get; set; } = new List<ProjectContractsViewModel>
+        ();
+    protected override async Task OnInitializedAsync()
+    {
+        using (var db = new ProjectcontractsContext())
+        {
+            db.Employee
+            .Include(emp => emp.Address)
+            .Include(emp => emp.Characterization)
+            .Include(emp => emp.Project)
+            .Include(emp => emp.Fullname)
+            .Include(emp => emp.Position)
+            .ToList()
+            .ForEach(project => ProjectContracts.Add(new ProjectContractsViewModel(project.Fullname.Firstname, project.Fullname.Lastname,
+            project.Address.City, project.Position.PositionName, project.Project.ProjectName, project.Salary.ToString(),
+            project.Project.ProjectStart.ToShortDateString(), project.Project.ProjectEnd.ToShortDateString())));
+        }
+
+    }
+}
